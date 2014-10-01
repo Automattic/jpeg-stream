@@ -1,5 +1,11 @@
 {
   "name": "jpeg-stream",
   "version": "0.0.1",
-  "description": "Splits a stream of bytes representing JPEGs into individual images"
+  "description": "Splits a stream of bytes representing JPEGs into individual images",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "1.21.4"
+  }
 }
