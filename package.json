@@ -1,6 +1,6 @@
 {
   "name": "jpeg-stream",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Splits a stream of bytes representing JPEGs into individual images",
   "scripts": {
     "test": "mocha"
