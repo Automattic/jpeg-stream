@@ -5,7 +5,7 @@ Splits a stream of bytes representing JPEGs into individual images
 
 ## How to use
 
-```
+```js
 var JPEGStream = require('jpeg-stream');
 var spawn = require('child_process').spawn;
 var proc = spawn('ffmpeg', [
