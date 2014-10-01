@@ -1,6 +1,8 @@
 
 # jpeg-stream
 
+[![Build Status](https://travis-ci.org/Automattic/jpeg-stream.svg?branch=master)](https://travis-ci.org/Automattic/jpeg-stream)
+
 Splits a stream of bytes representing JPEGs into individual images
 
 ## How to use
@@ -14,6 +16,10 @@ proc.stdout.pipe(parser).on('data', function(buf){
   // each jpeg in its own `buf`
 });
 ```
+
+## API
+
+`jpeg-stream` exports a `Transform` stream.
 
 ## License
 
