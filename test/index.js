@@ -52,16 +52,19 @@ describe('jpeg-stream', function(){
 
   it('should not transform jpeg without proper beginning', function(done){
     var parser = new JPEGStream;
-    try {
-      parser.write(j1.slice(10));
-      parser.on('data', function () {
-        throw new Error('Unexpected');
-      });
-    } catch (error) {
+
+    parser.on('data', function () {
+      throw new Error('Unexpected');
+    });
+
+    parser.on('error', function(err) {
       assert(0 == parser.count);
+      assert('Error: Expected JPEG start' == err);
 
       done();
-    }
+    });
+
+    parser.write(j1.slice(10));
   });
 
   it('should not transform mixed up jpegs', function(done){
@@ -71,21 +74,22 @@ describe('jpeg-stream', function(){
       assert(jpeg instanceof Buffer);
       assert(0 == parser.count);
 
-        parser.once('data', function (jpeg2) {
+        parser.once('data', function(jpeg2) {
           throw new Error('Unexpected');
         });
     });
 
-    parser.write(j1.slice(0,100));
-    try {
-      parser.write(j2.slice(0,100));
-      parser.write(j1.slice(100));
-      parser.write(j2.slice(100));
-    } catch (error) {
+    parser.on('error', function(err) {
       assert(0 == parser.count);
+      assert('Error: Expected JPEG end, but found start' == err);
 
       done();
-    }
+    });
+
+    parser.write(j1.slice(0,100));
+    parser.write(j2.slice(0,100));
+    parser.write(j1.slice(100));
+    parser.write(j2.slice(100));
   });
 });
 
