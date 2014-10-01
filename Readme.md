@@ -21,6 +21,11 @@ proc.stdout.pipe(parser).on('data', function(buf){
 
 `jpeg-stream` exports a `Transform` stream.
 
+## Authors
+
+- Nick Momrik ([@nickmomrik](https://github.com/nickmomrik))
+- Guillermo Rauch ([@guille](https://github.com/guille))
+
 ## License
 
 MIT – Copyright (c) 2014 Automattic, Inc.
