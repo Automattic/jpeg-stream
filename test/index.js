@@ -59,7 +59,7 @@ describe('jpeg-stream', function(){
 
     parser.on('error', function(err) {
       assert(0 == parser.count);
-      assert('Error: Expected JPEG start' == err);
+      assert('Expected JPEG start' == err.message);
 
       done();
     });
@@ -74,22 +74,20 @@ describe('jpeg-stream', function(){
       assert(jpeg instanceof Buffer);
       assert(0 == parser.count);
 
-        parser.once('data', function(jpeg2) {
-          throw new Error('Unexpected');
-        });
+      parser.once('data', function(jpeg2) {
+        throw new Error('Unexpected');
+      });
     });
 
     parser.on('error', function(err) {
       assert(0 == parser.count);
-      assert('Error: Expected JPEG end, but found start' == err);
+      assert('Expected JPEG end, but found start' == err.message);
 
       done();
     });
 
     parser.write(j1.slice(0,100));
     parser.write(j2.slice(0,100));
-    parser.write(j1.slice(100));
-    parser.write(j2.slice(100));
   });
 });
 
