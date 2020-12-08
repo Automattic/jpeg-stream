@@ -38,7 +38,7 @@ JPEGStream.prototype._transform = function(buf, enc, fn){
 
       if (this.expectEnd) {
         if (0xd9 == buf[i]) {
-          var jpeg = new Buffer(this.jpeg);
+          var jpeg = new Buffer.from(this.jpeg);
           this.count++;
           this.push(jpeg);
           this.jpeg = null;
